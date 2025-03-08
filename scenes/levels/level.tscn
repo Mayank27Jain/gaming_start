@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://naty0nkro67v"]
+
+[ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_e86fi"]
+[ext_resource type="PackedScene" uid="uid://h4mxf5572kpq" path="res://scenes/objects/bed.tscn" id="2_50ihl"]
+[ext_resource type="PackedScene" uid="uid://brb1nefwm75gp" path="res://scenes/player/player.tscn" id="2_h781n"]
+[ext_resource type="PackedScene" uid="uid://drfraabi4pdty" path="res://scenes/objects/billboard.tscn" id="3_5t4ag"]
+[ext_resource type="PackedScene" uid="uid://bcw1q7oy3n18x" path="res://scenes/enemies/drone.tscn" id="4_2qo7k"]
+[ext_resource type="PackedScene" uid="uid://do1joxg2781sy" path="res://scenes/objects/gate.tscn" id="5_gyihy"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_e86fi")
+
+[node name="Bed" parent="." instance=ExtResource("2_50ihl")]
+position = Vector2(-960, 634)
+
+[node name="Billboard" parent="." instance=ExtResource("3_5t4ag")]
+position = Vector2(-2220, -379)
+
+[node name="Drone" parent="." instance=ExtResource("4_2qo7k")]
+position = Vector2(1339, 457)
+
+[node name="Gate" parent="." instance=ExtResource("5_gyihy")]
+position = Vector2(-755, -756)
+
+[node name="Player" parent="." instance=ExtResource("2_h781n")]
+position = Vector2(384, 162)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.6, 0.6)
+position_smoothing_enabled = true
+
+[node name="Projectiles" type="Node2D" parent="."]
+
+[connection signal="player_entered_gate" from="Gate" to="." method="_on_gate_player_entered_gate"]
+[connection signal="grenade" from="Player" to="." method="_on_player_grenade"]
+[connection signal="laser" from="Player" to="." method="_on_player_laser"]
