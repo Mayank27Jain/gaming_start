@@ -6,6 +6,8 @@
 size = Vector2(1227, 70)
 
 [node name="Billboard" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 7
 
 [node name="BillboardImage" type="Sprite2D" parent="."]
 position = Vector2(609, 106)
